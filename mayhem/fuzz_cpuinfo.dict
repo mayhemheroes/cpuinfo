@@ -1,0 +1,42 @@
+# Dictionary for fuzz_cpuinfo — tokens of the x86 /proc/cpuinfo text the harness parses.
+# The x86 parser (src/x86/linux/cpuinfo.c) splits each line on ':' and keys on "processor"
+# and "apicid"; the sysfs kernel_max path parses a bare decimal number. These tokens keep
+# mutated inputs structurally close to real /proc/cpuinfo so the value-parsing branches fire.
+
+# Keys the parser explicitly matches
+kw_processor="processor\x09: "
+kw_apicid="apicid\x09: "
+
+# Common /proc/cpuinfo field names (seen in the recorded corpus) — exercise the ignored-key path
+kw_vendor_id="vendor_id\x09: "
+kw_cpu_family="cpu family\x09: "
+kw_model="model\x09\x09: "
+kw_model_name="model name\x09: "
+kw_stepping="stepping\x09: "
+kw_microcode="microcode\x09: "
+kw_cpu_mhz="cpu MHz\x09\x09: "
+kw_cache_size="cache size\x09: "
+kw_physical_id="physical id\x09: "
+kw_siblings="siblings\x09: "
+kw_core_id="core id\x09\x09: "
+kw_cpu_cores="cpu cores\x09: "
+kw_flags="flags\x09\x09: "
+kw_bogomips="bogomips\x09: "
+kw_clflush="clflush size\x09: "
+kw_address_sizes="address sizes\x09: "
+
+# Recorded value fragments
+v_genuineintel="GenuineIntel"
+v_authenticamd="AuthenticAMD"
+v_intel_atom="Intel(R) Atom(TM) CPU"
+v_ghz=" @ 1.33GHz"
+
+# Numeric edge values for the processor index / apicid / kernel_max number parsers
+n_0="0"
+n_1="1"
+n_255="255"
+n_256="256"
+n_4294967295="4294967295"
+sep=":"
+tab="\x09"
+nl="\x0a"

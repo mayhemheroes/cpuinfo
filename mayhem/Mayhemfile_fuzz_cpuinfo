@@ -1,0 +1,6 @@
+project: cpuinfo
+target: fuzz_cpuinfo
+cmds:
+  - cmd: /mayhem/fuzz_cpuinfo
+    libfuzzer: true
+    dictionary: /mayhem/mayhem/fuzz_cpuinfo.dict
