@@ -1,0 +1,9 @@
+project: cpuinfo
+target: fuzz_cpuinfo
+cmds:
+  - cmd: /mayhem/fuzz_cpuinfo
+    libfuzzer: true
+    dictionary: /mayhem/mayhem/fuzz_cpuinfo.dict
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/fuzz_cpuinfo/testsuite
